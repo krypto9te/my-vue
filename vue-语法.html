@@ -16,18 +16,40 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <div id="app">
-      <input type="text" v-model="username">
-      <p>Hello {{username}}</p>
+      <h2>双大括号表示</h2>
+      <p>{{msg}}</p>
+      <p>{{msg.toUpperCase()}}</p>
+      <p v-text="msg"></p>
+      <p v-html="msg"></p>
+      
+      
+      
+      <h2>强制数据绑定</h2>
+      <img src="imgUrl">
+      <img :src="imgUrl">
+      <img v-bind:src="imgUrl">
+
+      <h2>绑定事件监听</h2>
+      <button v-on:click='test'>test</button>
+      <button @click='test'>test1</button>
+
+
     </div>
-    
     <script type="text/javascript" src="js/vue.js"></script>
     <script type="text/javascript">
-      const vm = new Vue({
+      new Vue({
         el: '#app',
-        data: {
-          username: 'Vue!'
-        } 
-      })
-      </script>
+        data:{
+         msg: '<a href="www.baidu.com">I will go!</a>',
+         imgUrl:'https://vuejs.bootcss.com/images/logo.png'
+        },
+        methods: {
+          test(){
+            alert('ssa!')
+          }
+        }
+      }
+      )
+    </script>
   </body>
 </html>
