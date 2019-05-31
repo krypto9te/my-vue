@@ -31,7 +31,7 @@
 
       <h2>绑定事件监听</h2>
       <button v-on:click='test'>test</button>
-      <button @click='test'>test1</button>
+      <button @click='test1(msg)'>test1</button>
 
 
     </div>
@@ -46,6 +46,9 @@
         methods: {
           test(){
             alert('ssa!')
+          },
+          test1(content){
+            alert(content)
           }
         }
       }
