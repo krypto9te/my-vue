@@ -21,11 +21,16 @@
           <li v-for="(p, index) in persons" :key="index">
             {{index}}----{{p.name}}----{{p.age}}
             <button @click="delete1(index)">删除</button>
-            <button @click="update1(index, {name: 'Irene',age: 28})">更新</button>
+            <button @click="update1(index, {name: 'Irene', age: 28})">更新</button>
           </li>
         </ul>
 
       <h2>遍历对象</h2>
+      <ul>
+        <li v-for="(value, key) in persons[2]" :key="key">
+          {{key}}-----{{value}}
+        </li>
+      </ul>
     </div>
     <script src="js/vue.js" ></script>
     <script>
@@ -45,7 +50,7 @@
             this.persons.splice(index, 1)
           },
           update1(index, newp) {
-            this.persons[index] = newp
+            this.persons.splice(index, 1, newp)  //splice：增删改
           }
         },
       })
