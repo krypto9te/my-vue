@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="demo">
+      <button @click="destroyVue">destory vue</button>
+      <p v-show="isShow">1s后隐藏</p>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#demo',
+        data: {
+          isShow: true
+        },
+
+        //初始阶段
+        beforeCreate() {
+          console.log('beforeCreate()')
+        },
+
+        created() {
+          console.log('created()')
+        },
+
+        beforeMount() {
+          console.log('beforeMount()')
+        },
+
+        mounted () {  //初始化显示之后立即调用（1次）
+          console.log('mounted()')
+          this.intervalId = setInterval(() => {
+            console.log("-----")
+            this.isShow = !this.isShow
+          }, 1000)
+        },
+
+        //更新阶段
+
+        beforeUpdate() {
+          console.log('beforeUpdate()')
+        },
+
+        updated() {
+          console.log('updated()')         
+        },
+
+        //死亡阶段
+        beforeDestroy() { //死亡之前调用（1次）
+          console.log('beforeDestroy()')         
+          clearInterval(this.intervalId)
+        },
+
+        destroyed() {
+          console.log('destroyed()')                   
+        },
+
+        methods: {
+          destroyVue () { 
+            this.$destroy()
+          }
+        },
+      })
+    </script>
+  </body>
+</html>
