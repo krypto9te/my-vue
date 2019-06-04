@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="demo">
+      <p ref="content">blackpink</p>
+      <button @click="hint">提示</button>
+
+      <p v-cloak>{{msg}}</p>
+    </div>
+
+    <div id="demo1">
+      <p v-lower-text="msg1"></p>
+      <p v-upper-text="msg1"></p>
+    </div>
+
+    <div id="demo2">
+      <p v-lower-text="msg2"></p>
+      <p v-upper-text="msg2"></p>
+      </div>
+    <script src="js/vue.js"></script>
+    <script>
+
+      //定义全局指令
+      
+      //el：指令属性所在标签
+      //binding：包含指令数据的对象
+      Vue.directive('lower-text', function (el, binding) {
+        console.log(el, binding)
+        el.textContent = binding.value.toLowerCase()
+      })
+
+      new Vue({
+        el: '#demo',
+        data: {
+          msg: 'iz*one'
+        },
+        methods: {
+          hint () {
+            alert(this.$refs.content.textContent)
+          }
+        },
+      })
+
+
+      new Vue({
+        el: '#demo1',
+        data: {
+          msg1: 'Jennie'
+        },
+        //定义局部指令
+        directives: {
+          'upper-text': function (el, binding){
+            el.textContent = binding.value.toUpperCase()
+
+          }
+        }
+      })
+
+      new Vue({
+        el: '#demo2',
+        data: {
+          msg2: 'Lisa'
+        }
+      })
+    </script>
+  </body>
+</html>

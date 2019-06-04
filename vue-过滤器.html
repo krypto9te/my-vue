@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <div id="demo">
+      <h2>显示格式化的日期时间</h2>
+      <p>{{date}}</p>
+      <p>完整：{{date | dateStr}}</p>
+      <p>年月日：{{date | dateStr('YYYY-M-D')}}</p>
+      <p>时分秒：{{date | dateStr('H:m:s')}}</p>
+    </div>
+    <script src="js/vue.js" ></script>
+    <script src="https://cdn.bootcss.com/moment.js/2.24.0/moment.js"></script>
+    <script>
+
+      Vue.filter('dateStr', function(value, format = 'YYYY-M-D H:m:s'){
+        return moment(value).format(format);
+      })
+
+      new Vue({
+        el: '#demo',
+        data: {
+          date: new Date()
+        }
+      })
+    </script>
+  </body>
+</html>
